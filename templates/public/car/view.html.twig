@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ car.nom }}{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>{{ car.nom }}</h1>
+        <p class="lead">{{ car.manufacturer }} {{ car.model }}</p>
+        <p class="text-muted">{{ car.description }}</p>
+        <ul class="list-unstyled">
+            <li><strong>Fuel:</strong> {{ car.fuel }}</li>
+            <li><strong>Transmission:</strong> {{ car.transmission }}</li>
+            <li><strong>Price:</strong> {{ car.price }} MAD</li>
+            <li><strong>Quantity:</strong> {{ car.quantity }}</li>
+            <li><strong>Category:</strong> {{ car.category.name }}</li>
+            <li><strong>Quantity:</strong> {{ car.quantity }}</li>
+        </ul>
+        {{ form_start(form) }}
+        {{ form_row(form.quantity) }}
+            <button type="submit" class="btn btn-primary px-3 fw-medium">Buy now</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

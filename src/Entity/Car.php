@@ -155,7 +155,7 @@ class Car
 
     public function getQuantity(): ?int
     {
-        return $this->qte;
+        return $this->quantity;
     }
 
     public function setQuantity(int $quantity): self

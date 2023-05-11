@@ -5,11 +5,13 @@ namespace App\Entity;
 use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[ORM\Table(name: 'clients')]
-class Client
+class Client implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -44,6 +46,18 @@ class Client
     {
         $this->addresses = new ArrayCollection();
         $this->orders = new ArrayCollection();
+    }
+
+    public function getRoles() : array
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function eraseCredentials() { }
+
+    public function getUserIdentifier() : string
+    {
+        return $this->email;
     }
 
     public function getId(): ?int

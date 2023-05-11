@@ -6,15 +6,27 @@ namespace App\Controller\Dashboard;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\OrderRepository;
 
 #[ Route('/dashboard/orders', name : 'dashboard.orders.') ]
 class OrderController extends AbstractController
 {
-    #[Route('/order', name: 'index')]
-    public function index(): Response
+    #[Route('/', name: 'index')]
+    public function index(OrderRepository $orderRepository): Response
     {
-        return $this->render('order/index.html.twig', [
-            'controller_name' => 'OrderController',
-        ]);
+        $orders = $orderRepository->findAll();
+        return $this->render('dashboard/order/index.html.twig', compact('orders'));
+    }
+
+    public function destroy(Request $request, EntityManagerInterface $entityManager, Order $order) : Response
+    {
+
+        $entityManager->remove($order);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Order cancelled successfully.');
+
+        return $this->redirectToRoute('dashboard.orders.index');
+
     }
 }

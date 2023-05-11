@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CarController!{% endblock %}
+
+{% block body %}
+<h1>Cars</h1>
+
+  <a href="{{ path('dashboard.cars.create') }}" class="btn btn-primary mb-3">Add Car</a>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Category</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Fuel</th>
+        <th scope="col">Transmission</th>
+        <th scope="col">Manufacturer</th>
+        <th scope="col">Model</th>
+        <th scope="col">Description</th>
+        <th scope="col">Quantity</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for car in cars %}
+        <tr>
+          <th scope="row">{{ car.id }}</th>
+          <td>{{ car.category.name }}</td>
+          <td>{{ car.nom }}</td>
+          <td>{{ car.price }}</td>
+          <td>{{ car.fuel }}</td>
+          <td>{{ car.transmission }}</td>
+          <td>{{ car.manufacturer }}</td>
+          <td>{{ car.model }}</td>
+          <td>{{ car.description }}</td>
+          <td>{{ car.quantity }}</td>
+          <td>
+            <a href="{{ path('dashboard.cars.view', {id: car.id}) }}" class="btn btn-secondary btn-sm">View</a>
+            <a href="{{ path('dashboard.cars.edit', {id: car.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+            <a href="{{ path('dashboard.cars.delete', {id: car.id}) }}" class="btn btn-danger btn-sm">Remove</a>
+          </td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="11">No cars found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

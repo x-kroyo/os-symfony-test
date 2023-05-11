@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OrderController!{% endblock %}
+
+{% block body %}
+  <h1>My Orders</h1>
+
+  {% if orders|length > 0 %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Car</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Unit price</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set total = 0 %}
+        {% for order in orders %}
+          <tr>
+            <th scope="row">{{ order.id }}</th>
+            <td>{{ order.car.nom }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.car.price }} MAD</td>
+            <td>{{ order.car.price * order.quantity }} MAD</td>
+          </tr>
+          {% set total = total + order.car.price * order.quantity %}
+        {% endfor %}
+        <tr>
+          <th colspan="4" class="text-end">Total:</th>
+          <td>{{ total }} MAD</td>
+        </tr>
+      </tbody>
+    </table>
+  {% else %}
+    <p>You haven't placed any orders yet.</p>
+  {% endif %}
+{% endblock %}

@@ -6,13 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class UserController extends AbstractController
+class LogoutController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
+    #[Route('/logout', name: 'logout')]
     public function index(): Response
     {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
+        throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
 }

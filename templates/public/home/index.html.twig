@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<h1>Welcome to our online car store!</h1>
+<p>Check out our latest collection of cars:</p>
+
+<div class="card-deck d-flex flex-column row-gap-4">
+{% for car in cars %}
+    <div class="card mx-2">
+        <div class="card-body">
+            <h5 class="card-title">{{ car.nom }}</h5>
+            <small class="d-block mb-3 text-secondary card-text">{{ car.description }}</small>
+            <a href="#" class="btn btn-primary">Buy Now</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

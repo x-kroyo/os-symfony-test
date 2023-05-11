@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientController!{% endblock %}
+
+{% block body %}
+  <h1>Orders</h1>
+
+  {% if orders|length > 0 %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Car</th>
+          <th scope="col">Client</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody style="vertical-align: middle;">
+        {% for order in orders %}
+          <tr>
+            <th scope="row">{{ order.id }}</th>
+            <td>{{ order.car.nom }}</td>
+            <td>{{ order.client.getFirstName() }} {{ order.client.getLastName() }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>
+                <h6 class="mb-0">{{ order.car.price * order.quantity }} MAD</h6>
+                <small class="text-muted">{{ order.car.price }} MAD</small>
+            </td>
+            <td>
+                <a href="#" class="btn btn-danger btn-sm">Cancel</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>You haven't placed any orders yet.</p>
+  {% endif %}
+{% endblock %}

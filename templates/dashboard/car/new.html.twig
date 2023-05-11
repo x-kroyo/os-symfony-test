@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Car{% endblock %}
+
+{% block body %}
+    <h1>New Car</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.price) }}
+    {{ form_row(form.fuel) }}
+    {{ form_row(form.transmission) }}
+    {{ form_row(form.manufacturer) }}
+    {{ form_row(form.model) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.quantity) }}
+    {{ form_row(form.category) }}
+    <button type="submit" class="btn btn-primary">Create</button>
+    {{ form_end(form) }}
+{% endblock %}

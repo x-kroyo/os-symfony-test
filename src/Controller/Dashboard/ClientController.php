@@ -12,7 +12,7 @@ class ClientController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): Response
     {
-        return $this->render('client/index.html.twig', [
+        return $this->render('dashboard/client/index.html.twig', [
             'controller_name' => 'ClientController',
         ]);
     }

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ car.nom }}{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">{{ car.nom }}</h5>
+    </div>
+    <div class="card-body">
+        <p>Price: {{ car.price }}</p>
+        <p>Fuel: {{ car.fuel }}</p>
+        <p>Transmission: {{ car.transmission }}</p>
+        <p>Manufacturer: {{ car.manufacturer }}</p>
+        <p>Model: {{ car.model }}</p>
+        <p>Description: {{ car.description }}</p>
+        <p>Quantity: {{ car.quantity }}</p>
+        <p>Category: {{ car.category.name }}</p>
+    </div>
+</div>
+<a href="{{ path('dashboard.cars.index') }}" class="btn btn-primary mt-3">Back to list</a>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+<h1>Categories</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for category in categories %}
+        <tr>
+            <th scope="row">{{ category.id }}</th>
+            <td>{{ category.name }}</td>
+            <td><div class="text-truncate">{{ category.description }}</div></td>
+            <td>
+                <a href="{{ path('dashboard.categories.edit', {id: category.id}) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ path('dashboard.categories.delete', {id: category.id}) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{{ path('dashboard.categories.create') }}" class="btn btn-success">Add new category</a>
+{% endblock %}
